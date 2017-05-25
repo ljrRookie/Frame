@@ -1,11 +1,14 @@
 package com.ljr.frame.fragment;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.ljr.frame.BaseFragment;
 import com.ljr.frame.R;
+import com.ljr.frame.activity.OkHttpActivity;
 import com.ljr.frame.adapter.CommonFragmentAdapter;
 
 import static android.content.ContentValues.TAG;
@@ -25,7 +28,15 @@ public class CommonFragment extends BaseFragment {
         Log.d(TAG, "initView: 常用框架Fragment页面被初始化了...");
         View view = View.inflate(mContext, R.layout.fragment_common, null);
         mListview = (ListView) view.findViewById(R.id.listview);
-
+mListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        String data = mDatas[position];
+        if(data.toLowerCase().equals("okhttp")){
+            mContext.startActivity(new Intent(mContext, OkHttpActivity.class));
+        }
+    }
+});
         return view;
     }
     
